@@ -1,0 +1,16 @@
+{
+  "name": "Chat-application",
+  "version": "0.0.1",
+  "description": "Using socket.io library trying to make chat application having facebook authentication",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "morgan": "^1.8.1",
+    "socket.io": "^2.0.1"
+  },
+  "respository": {
+    "type": "git",
+    "url": "https://github.com/ashvin14/Chat-appication.git"
+  }
+}
