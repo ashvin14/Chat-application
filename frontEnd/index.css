@@ -1,0 +1,43 @@
+.login {
+    position: absolute;
+    width: calc(100% - 20px);
+    max-width: 800px;
+    height: 46%;
+    border-radius: 10px;
+    top: 44%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    background-color: #f8f8f8;
+    overflow: hidden;
+    
+    background-color: cecccc;
+}
+.facebook{
+	background-color:#365899;
+}
+.login-button{
+	position:relative;
+	top:50%;
+	left: 24%;
+	color:white;
+	font-weight: 700;
+}
+.google{
+	background-color:#ef1c1c;
+}
+.facebook:hover{
+	background-color:#0d2cce;
+}
+.google:hover{
+	background-color:#ca0000;
+}
+.text{
+	color: rgb(127, 29, 29);
+    position: relative;
+    left: 24%;
+    font-size:4vh;
+}
+ul li{
+	list-style-type: none;
+}

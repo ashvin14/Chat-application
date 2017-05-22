@@ -1,16 +1,21 @@
 var app = angular.module('myApp', []);
 
 
-app.controller('chatController', ['socket', function(socket) {
+app.controller('chatController', ['socket','$http' ,function(socket,$http) {
     var main = this;
     this.text = "";
     this.messages=[{}];
 	this.prechatdisplay=[];
     this.user;
-    do{
-    	main.user = prompt("who are you?")
-    }while(main.user==null)
-    socket.emit('user',main.user)
+    
+    $http.get('./user').then(function(response){
+
+     main.user = (response.data.passport.user.displayName).split(' ')[0];
+     socket.emit('user',main.user)
+
+    })
+
+    
    	
     this.sendmsg = function() {
         console.log(socket)
