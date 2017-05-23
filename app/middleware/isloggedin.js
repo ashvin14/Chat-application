@@ -1,8 +1,12 @@
 exports.check = function(req,res,next){
-	if(req.session.passport){
-		console.log(req.session)
+
+	if(req.user){
+	
+		
 		next();
 	}
 	else 
-		res.redirect('/')
+		 res.redirect('/') 
+		 
+		
 }

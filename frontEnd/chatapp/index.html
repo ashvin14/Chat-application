@@ -14,11 +14,15 @@
         <div class="chat_window" ng-controller="chatController as chatCtrl">
             <div class="top_menu">
                 <div class="buttons">
-                    <div class="button close"></div>
+                    <div class="button close" ng-click="chatCtrl.loggout()"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></div>
                     <div class="button minimize"></div>
                     <div class="button maximize"></div>
                 </div>
-                <div class="title">Chat</div>
+                <div class="title">Chat  <h6>{{chatCtrl.typingText}}</h6>
+
+
+                   
+                </div>
             </div>
             <ul class="messages">
                 <div ng-repeat="message in chatCtrl.messages">
@@ -35,13 +39,14 @@
                         </div>
                     </li>
                 </div>
-                <div class="prechatdisplay">
-                    <p class="lead" ng-repeat="msg in chatCtrl.prechatdisplay">{{msg}}</p>
-                </div>
+
             </ul>
+             <div class="prechatdisplay">
+                        <p class="lead" ng-repeat="msg in chatCtrl.prechatdisplay track by $index">{{msg}}</p>
+                    </div>
             <div class="bottom_wrapper clearfix">
                 <div class="message_input_wrapper">
-                    <input class="message_input" ng-model="chatCtrl.text" placeholder="Type your message here...">
+                    <input class="message_input" on-keydown="chatCtrl.iskeydown" ng-model="chatCtrl.text" placeholder="Type your message here...">
                 </div>
                 <div class="send_message">
                     <div class="icon"></div>
