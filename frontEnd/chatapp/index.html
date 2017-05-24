@@ -18,13 +18,11 @@
                     <div class="button minimize"></div>
                     <div class="button maximize"></div>
                 </div>
-                <div class="title">Chat  <h6>{{chatCtrl.typingText}}</h6>
-
-
-                   
+                <div class="title">Chat
+                    <h6>{{chatCtrl.typingText}}</h6>
                 </div>
             </div>
-            <ul class="messages">
+            <ul class="messages" id="msg">
                 <div ng-repeat="message in chatCtrl.messages">
                     <li ng-show="!chatCtrl.ifUser(chatCtrl.user,message.user)" class="message left appeared">
                         <div class="avatar">{{message.user}}</div>
@@ -39,11 +37,10 @@
                         </div>
                     </li>
                 </div>
-
             </ul>
-             <div class="prechatdisplay">
-                        <p class="lead" ng-repeat="msg in chatCtrl.prechatdisplay track by $index">{{msg}}</p>
-                    </div>
+            <div class="prechatdisplay">
+                <p class="lead" ng-repeat="msg in chatCtrl.prechatdisplay track by $index">{{msg}}</p>
+            </div>
             <div class="bottom_wrapper clearfix">
                 <div class="message_input_wrapper">
                     <input class="message_input" on-keydown="chatCtrl.iskeydown" ng-model="chatCtrl.text" placeholder="Type your message here...">
@@ -55,7 +52,22 @@
             </div>
         </div>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script>
+    setInterval(updateScroll, 200);
+    var scrolled = false;
+
+    function updateScroll() {
+        if (!scrolled) {
+            var element = document.getElementById("msg");
+            element.scrollTop = element.scrollHeight;
+        }
+    }
+    $("#yourDivID").on('scroll', function() {
+        scrolled = true;
+    });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
     <script src="../angular/controller/chatController.js"></script>
