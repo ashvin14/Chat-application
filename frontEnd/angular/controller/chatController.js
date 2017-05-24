@@ -120,6 +120,10 @@ app.controller('chatController', ['socket', '$http', function(socket, $http) {
         })
 
     }
+    setInterval(function(){
+        main.prechatdisplay.pop()
+    },10000)
+
 
 
 
