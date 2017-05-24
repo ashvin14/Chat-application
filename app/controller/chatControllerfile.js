@@ -18,8 +18,7 @@ var isloggedin = require('./../middleware/isloggedin.js');
 
 module.exports.controllerFunction = function(app, io) {
 
-
-    io.on('connection', function(socket) {
+ io.on('connection', function(socket) {
 
         
 
@@ -29,14 +28,14 @@ module.exports.controllerFunction = function(app, io) {
                 message: msg,
                 user: socket.user
             });
-            console.log("message is "+msg)
+            
             var chat = new chatModel({
-            	message:msg,
-            	user:socket.user
+                message:msg,
+                user:socket.user
             })
             chat.save(function(err,result){
-            	if(err)throw err;
-            	console.log(result);
+                if(err)throw err;
+                
             })
         })
 
@@ -46,6 +45,7 @@ module.exports.controllerFunction = function(app, io) {
 
 
         socket.on('user', function(data) {
+            console.log(data);
             socket.broadcast.emit('meta display', data + " came online")
             socket.user = data;
         })
@@ -66,6 +66,8 @@ module.exports.controllerFunction = function(app, io) {
 
 
 
+
+
     chatRouter.get('/user', function(req, res) {
 
         res.json(req.session);
@@ -78,7 +80,7 @@ module.exports.controllerFunction = function(app, io) {
         res.json({ 'loggout': 'djfd' });
     })
     chatRouter.get('/chats',function(req,res){
-    	console.log('/ url was called')
+    	
     	chatModel.find({},function(err,chats){
     		if(err)throw err;
     		res.json(chats);
