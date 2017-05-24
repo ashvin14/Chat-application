@@ -2,7 +2,7 @@
  
 app.factory('socket', function($rootScope) {
 
-    var socket = io.connect('localhost:3000/');
+    var socket = io();
 
     return {
         on: function(eventName, callback) {
