@@ -40,7 +40,7 @@ app.use('/', express.static(__dirname + '/frontEnd/'));
 passport.use(new Strategy({
     clientID: '280707322373735',
     clientSecret: '00976b861ad56cbdb82fa3e20a61ecf9',
-    callbackURL: 'http://localhost:3000/login/successful/facebook'
+    callbackURL: 'http://chatapp.ml/login/successful/facebook'
 
 }, function(accessToken, refreshToken, profile, cb) {
    
@@ -54,7 +54,7 @@ passport.use(new Strategy({
 passport.use(new googleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_SECRET_ID,
-    callbackURL: 'http://localhost:3000/login/successful/google'
+    callbackURL: 'http://chatapp.ml/login/successful/google'
 }, function(accessToken, refreshToken, profile, cb) {
     process.nextTick(function() {
 
