@@ -44,6 +44,8 @@ app.directive('onKeydown', function() {
 
 
 })
+
+
 app.controller('chatController', ['socket', '$http', function(socket, $http) {
     var main = this;
     this.text = "";
@@ -51,7 +53,7 @@ app.controller('chatController', ['socket', '$http', function(socket, $http) {
     this.prechatdisplay = [];
     this.user;
     this.keyup = false;
-    this.typingText="";
+    this.typingText = "";
     $http.get('./user').then(function(response) {
 
         main.user = (response.data.passport.user.displayName).split(' ')[0];
@@ -74,6 +76,7 @@ app.controller('chatController', ['socket', '$http', function(socket, $http) {
         main.text = "";
 
     }
+    this.scrolled = false;
 
     socket.on('chat message', function(msg) {
         console.log(msg)
@@ -82,10 +85,19 @@ app.controller('chatController', ['socket', '$http', function(socket, $http) {
 
 
 
+
     })
-    socket.on('typingState',function(data){
-    	main.typingText=data;
-    	console.log(main.typingText)
+    socket.on('chat message', function(msg) {
+       var element = document.getElementById("msg");
+           element.scrollTop = element.scrollHeight;
+        
+
+
+
+    })
+    socket.on('typingState', function(data) {
+        main.typingText = data;
+        console.log(main.typingText)
     })
     socket.on('delete meta display', function(msg) {
         main.typingText = ""
@@ -120,9 +132,9 @@ app.controller('chatController', ['socket', '$http', function(socket, $http) {
         })
 
     }
-    setInterval(function(){
+    setInterval(function() {
         main.prechatdisplay.pop()
-    },10000)
+    }, 10000)
 
 
 
